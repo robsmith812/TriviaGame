@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Video Game Trivia</title>
+</head>
+
+<body>
+    <div id="start">
+        <h1>Video Game Trivia</h1>
+        <h3>Test Your Video Game Knowledge</h3>
+        <button id="start-btn">Start</button>
+    </div>
+    <div id="questions" style="display:none">
+        <h3>Time Remaining: <span id="timer">60</span></h3>
+        <button id="submit">Submit Answers</button>
+    </div>
+
+    <div id="end" style="display:none">
+        <h3>You scored <span id="score">0</span> out of 8</h3>
+        <button id="takeAgain">Try Again</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var questions = [
+            "What is the name of Mario's brother?",
+            "Before the name Mario, what was Mario going to be named?",
+            "What is the name of Mario's dino friend?",
+            "What does Mario jump on after completing a level?",
+            "Who is Mario's arch enemy?",
+            "What is the name of Mario's 'negative'?",
+            "Who is princess of Mushroom Kingdom?",
+            "What game introduced Mario to the third dimension?"
+        ];
+
+        var answers = [["Yoshi", "Luigi", "Toad", "Waluigi"], ["Runman", "Luigi", "Jumpman", "Red"],
+            ["Toad", "Yoshi", "Monty", "Lakitu"], ["Button", "Koopa Troopa", "Finish Line", "Flag Pole"],
+            ["Bowser", "Birdo", "Waluigi", "Samus"], ["Waluigi", "Wario", "Birdo", "Mouser"],
+            ["Peach", "Daisy", "Toadette", "Rosalina"], ["Mario Brothers 3", "Mario RPG", "Mario 64", "Mario Sunshine"]];
+        var counter = 0;
+        var timer = 60;
+        var correctAnswerCounter = 0;
+
+        document.getElementById("start-btn").onclick = () => {
+
+            var interval = setInterval(addTimer, 1000);
+
+            function addTimer(){
+                timer--;
+                $('#timer').text(timer);
+                if (timer == 0){
+                    clearInterval(interval);
+                    timer = 60;
+                    $('#timer').text(timer);
+                    $("#end").show();
+                    $("#questions").hide();
+            }}
+
+            $("#questions").show()
+            $("#start").hide()
+        }
+
+        document.getElementById("submit").onclick = () => {
+
+            debugger;
+
+        if ($('input:radio[name=q[0]]:checked').val() == answers[index][1]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[1]]:checked').val() == answers[index][2]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[2]]:checked').val() == answers[index][1]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[3]]:checked').val() == answers[index][3]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input[name=q[4]]:checked').val() == answers[index][0]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[5]]:checked').val() == answers[index][1]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[6]]:checked').val() == answers[index][0]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+        if ($('input:radio[name=q[7]]:checked').val() == answers[index][2]){
+            correctAnswerCounter++;
+            $('#score').text(correctAnswerCounter);
+        }
+
+            clearInterval(interval);
+            timer = 60;
+            $('#timer').text(timer);
+
+            $("#end").show()
+            $("#questions").hide()
+        }
+
+        document.getElementById("takeAgain").onclick = () => {
+            timer = 60;
+            $('#timer').text(timer);
+            $("#start").show()
+            $("#end").hide()
+        }
+
+        questions.forEach((question, index) => {
+            var q = `<div id="q${index}" >
+        <p>${question}</p>
+        <input type="radio" name="q${index}" value="${answers[index][0]}"> ${answers[index][0]} <br> 
+        <input type="radio" name="q${index}" value="${answers[index][1]}"> ${answers[index][1]} <br> 
+        <input type="radio" name="q${index}" value="${answers[index][2]}"> ${answers[index][2]} <br> 
+        <input type="radio" name="q${index}" value="${answers[index][3]}"> ${answers[index][3]} <br> 
+        </div> `
+            $("#questions").append(q)
+        })
+
+    </script>
+</body>
+
+</html>
